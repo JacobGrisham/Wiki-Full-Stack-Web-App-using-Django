@@ -1,0 +1,24 @@
+{% extends "encyclopedia/layout.html" %}
+
+{% block title %}
+  Results
+{% endblock %}
+
+{% block body %}
+
+<h1>Results</h1>
+
+{% if error_message %}
+<div class="alert alert-warning" role="alert">
+  <p>{{ error_message }}</p>
+  <p>But you can add the entry <a href="{% url 'wiki:create' %}">here</a></p>
+</div>
+{% endif %}
+
+<ul class="list-group list-group-flush">
+  {% for result in results %}
+  <li class="list-group-item"><a href="wiki/{{ result }}">{{ result }}</a></li>
+  {% endfor %}
+</ul>
+
+{% endblock %}

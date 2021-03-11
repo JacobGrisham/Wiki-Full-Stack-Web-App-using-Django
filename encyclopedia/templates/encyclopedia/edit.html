@@ -1,0 +1,24 @@
+{% extends "encyclopedia/layout.html" %}
+
+{% load crispy_forms_tags %}
+
+{% block title %}
+  Edit
+{% endblock %}
+
+{% block body %}
+  {% if error %}
+  <div class="alert alert-danger" role="alert">
+    {{ error_message }}
+  </div>
+  {% endif %}
+
+  <h1>Edit {{ title }} Page</h1>
+  
+  <form action="{% url 'wiki:edit' title %}" method="POST">
+    {% csrf_token %}
+    {{ edit_form|crispy }}
+    <p>* indicates a required field</p>
+    <button type="submit" class="btn btn-primary">Save</button>
+  </form>
+{% endblock %}

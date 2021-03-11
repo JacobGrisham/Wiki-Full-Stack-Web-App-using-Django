@@ -1,0 +1,42 @@
+{% load static %}
+
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="Content-Language" content="en">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>{% block title %}{% endblock %}</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <link href="{% static 'encyclopedia/styles.css' %}" rel="stylesheet">
+    </head>
+    <body style="overflow-x: hidden; overflow-y: hidden;">
+        <div class="row" id="main">
+            <div class="sidebar col-lg-2 col-md-3">
+                <h2 class="mb-4">Wiki</h2>
+                <form action="{% url 'wiki:search' %}" class="my-2">
+                    <input class="search form-control" type="text" name="q" placeholder="Search Encyclopedia">
+                </form>
+                <div class="my-2">
+                    <a href="{% url 'wiki:home' %}">Home</a>
+                </div>
+                <div class="my-2">
+                    <a href="{% url 'wiki:create' %}">Create New Page</a>
+                </div>
+                <div class="my-2">
+                    <a href="wiki/{{ random_result }}">Random Page</a>
+                </div>
+                {% block nav %}
+                {% endblock %}
+            </div>
+            <div class="col-lg-10 col-md-9">
+                <div class="container">
+                    {% block body %}
+                    {% endblock %}
+                </div>
+            </div>
+        </div>
+
+    </body>
+</html>
